@@ -1,30 +1,73 @@
 /*
- * AccessSOS design system.
- * PLACEHOLDER tokens — replace with the AccessSOS values from Figma.
- * Every theme must define the same variables as the others (see global.css).
+ * AccessSOS design system — from the AccessSOS UI Kit (Figma), "Colors" page.
+ *
+ * Usage rules from the kit:
+ * - Brand colors: backgrounds, illustrations, graphical fields.
+ * - Gray 800 for body text on white (reduces eye strain).
+ * - Interactive colors: buttons, links, tiles, navigation.
+ * - Denotive colors (error / warning / success / focus): only for their meaning, used minimally.
+ * - Do not use other shades of red.
  */
+
+/* Raw palette — available as `bg-sos-red-500`, `text-sos-gray-800`, … */
+@theme {
+  --color-sos-red-50: #fef2f2;
+  --color-sos-red-100: #fce7e7;
+  --color-sos-red-200: #f9d2d5;
+  --color-sos-red-300: #f4adb2;
+  --color-sos-red-400: #ed7f89;
+  --color-sos-red-500: #df4154;
+  --color-sos-red-600: #cd314b;
+  --color-sos-red-700: #ad233e;
+  --color-sos-red-800: #912039;
+  --color-sos-red-900: #7c1f37;
+  --color-sos-red-950: #450c19;
+
+  --color-sos-gray-50: #f5f5f5;
+  --color-sos-gray-100: #ededed;
+  --color-sos-gray-200: #d8d8d8;
+  --color-sos-gray-300: #c8c8c8;
+  --color-sos-gray-400: #adadad;
+  --color-sos-gray-500: #9b9b9b;
+  --color-sos-gray-600: #888888;
+  --color-sos-gray-700: #5d5d5d;
+  --color-sos-gray-800: #4b4b4b;
+  --color-sos-gray-900: #333333;
+  --color-sos-gray-950: #1f1f1f;
+
+  /* Accents — highlight info and differentiate emergency types (Medical, Police, Fire, Mental). */
+  --color-sos-blue: #0084ff;
+  --color-sos-orange: #ea7520;
+  --color-sos-purple: #4d16c1;
+}
+
+/* Semantic tokens — what screens should use (`bg-primary`, `text-muted-foreground`, …). */
 @layer theme {
   :root {
     @variant accesssos {
-      --color-background: oklch(1 0 0);
-      --color-foreground: oklch(0.2 0.02 260);
-      --color-card: oklch(1 0 0);
-      --color-card-foreground: oklch(0.2 0.02 260);
-      --color-popover: oklch(1 0 0);
-      --color-popover-foreground: oklch(0.2 0.02 260);
-      --color-primary: oklch(0.55 0.22 27);
-      --color-primary-foreground: oklch(0.99 0 0);
-      --color-secondary: oklch(0.96 0.005 260);
-      --color-secondary-foreground: oklch(0.2 0.02 260);
-      --color-muted: oklch(0.96 0.005 260);
-      --color-muted-foreground: oklch(0.52 0.02 260);
-      --color-accent: oklch(0.95 0.02 27);
-      --color-accent-foreground: oklch(0.2 0.02 260);
-      --color-destructive: oklch(0.577 0.245 27.325);
-      --color-border: oklch(0.92 0.005 260);
-      --color-input: oklch(0.92 0.005 260);
-      --color-ring: oklch(0.55 0.22 27);
+      --color-background: #ffffff;
+      --color-foreground: #333333; /* gray/900 — headings */
+      --color-card: #ffffff;
+      --color-card-foreground: #333333;
+      --color-popover: #ffffff;
+      --color-popover-foreground: #333333;
+      --color-primary: #df4154; /* red/500 — brand */
+      --color-primary-foreground: #ffffff;
+      --color-secondary: #f5f5f5; /* gray/50 */
+      --color-secondary-foreground: #333333;
+      --color-muted: #f5f5f5;
+      --color-muted-foreground: #5d5d5d; /* gray/700 */
+      --color-accent: #fef2f2; /* red/50 */
+      --color-accent-foreground: #ad233e; /* red/700 */
+      --color-destructive: #e74c3c; /* denotive error */
+      --color-border: #d8d8d8; /* gray/200 */
+      --color-input: #d8d8d8;
+      --color-ring: #4c9aff; /* denotive focus */
       --color-scrim: oklch(0 0 0 / 35%);
+      --color-body: #4b4b4b; /* gray/800 — body text on white */
+      --color-success: #27ae60;
+      --color-warning: #f1c40f;
+      --color-info: #4c9aff;
     }
   }
 }
