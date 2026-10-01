@@ -2,9 +2,8 @@
 @import 'uniwind';
 @import 'tw-animate-css';
 
-/* Per-project design systems. Each file defines one Uniwind theme. */
-@import './projects/starter/theme.css';
-@import './projects/midnight/theme.css';
+/* Product design systems. Each file defines one Uniwind theme. */
+@import './products/accesssos/theme.css';
 
 @theme {
   --radius: 10px;
@@ -18,7 +17,7 @@
 
 /*
  * App chrome themes (the prototype controls). Prototype screens never use these —
- * they render inside <ScopedTheme theme={project.theme}>.
+ * they render inside <ScopedTheme theme={product.theme}>.
  * Every theme must define the same set of variables.
  */
 @layer theme {

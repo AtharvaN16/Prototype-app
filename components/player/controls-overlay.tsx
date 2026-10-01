@@ -1,6 +1,7 @@
-import { FlowPills } from '@/components/player/flow-pills';
+import { ExplorationTabs } from '@/components/player/exploration-tabs';
 import { ProjectPicker } from '@/components/player/project-picker';
 import { Text } from '@/components/ui/text';
+import { usePrototype } from '@/lib/prototype/prototype-provider';
 import { BlurView } from 'expo-blur';
 import { Pressable, View } from 'react-native';
 import Animated, { FadeIn, FadeInUp, FadeOut } from 'react-native-reanimated';
@@ -14,9 +15,11 @@ type ControlsOverlayProps = {
 
 /**
  * Top half of the controls: frosted backdrop over the prototype, the project
- * picker and the flow carousel. The bottom half is the native sheet in `app/controls.tsx`.
+ * picker and the exploration tabs. The bottom half is the native sheet in `app/controls.tsx`.
  */
 export function ControlsOverlay({ onClose }: ControlsOverlayProps) {
+  const { product } = usePrototype();
+
   return (
     <Animated.View
       entering={FadeIn.duration(200)}
@@ -33,14 +36,14 @@ export function ControlsOverlay({ onClose }: ControlsOverlayProps) {
 
       <Animated.View entering={FadeInUp.duration(260)} className="pt-safe-offset-3 gap-5">
         <View className="gap-1 px-5">
-          <Text variant="overline">Project</Text>
+          <Text variant="overline">{product.name}</Text>
           <ProjectPicker />
         </View>
         <View className="gap-2">
           <Text variant="overline" className="mx-5">
-            Flows
+            Explorations
           </Text>
-          <FlowPills />
+          <ExplorationTabs />
         </View>
       </Animated.View>
     </Animated.View>

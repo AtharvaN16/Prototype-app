@@ -4,28 +4,29 @@ import { usePrototype } from '@/lib/prototype/prototype-provider';
 import * as Haptics from 'expo-haptics';
 import { ScrollView } from 'react-native';
 
-/** Horizontally scrolling carousel of the active project's flows. */
-export function FlowPills() {
-  const { project, flow, selectFlow } = usePrototype();
+/** Horizontally scrolling tabs for the active project's explorations. */
+export function ExplorationTabs() {
+  const { project, exploration, selectExploration } = usePrototype();
 
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerClassName="gap-2 px-5">
-      {project.flows.map((f) => {
-        const active = f.id === flow.id;
+      {project.explorations.map((e) => {
+        const active = e.id === exploration.id;
         return (
           <Button
-            key={f.id}
+            key={e.id}
             size="pill"
             variant={active ? 'default' : 'secondary'}
+            accessibilityRole="tab"
             accessibilityState={{ selected: active }}
             onPress={() => {
               Haptics.selectionAsync();
-              selectFlow(f.id);
+              selectExploration(e.id);
             }}>
-            <Text>{f.name}</Text>
+            <Text>{e.name}</Text>
           </Button>
         );
       })}

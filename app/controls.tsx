@@ -2,6 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Symbol } from '@/components/ui/symbol';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { usePrototype } from '@/lib/prototype/prototype-provider';
 import * as Haptics from 'expo-haptics';
@@ -9,10 +10,20 @@ import { useRouter } from 'expo-router';
 import * as React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 
-/** Native iOS bottom sheet with the playback controls for the active flow. */
+/** Native iOS bottom sheet: version switcher + playback controls for the active exploration. */
 export default function ControlsSheet() {
   const router = useRouter();
-  const { project, flow, history, stepIndex, nav, jumpToStep, setControlsOpen } = usePrototype();
+  const {
+    project,
+    exploration,
+    version,
+    history,
+    stepIndex,
+    nav,
+    selectVersion,
+    jumpToStep,
+    setControlsOpen,
+  } = usePrototype();
 
   React.useEffect(() => {
     setControlsOpen(true);
@@ -21,7 +32,7 @@ export default function ControlsSheet() {
 
   const started = history.length > 1;
   const isFirst = history.length <= 1;
-  const isLast = stepIndex < 0 || stepIndex >= flow.steps.length - 1;
+  const isLast = stepIndex < 0 || stepIndex >= version.steps.length - 1;
 
   function begin() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -29,24 +40,40 @@ export default function ControlsSheet() {
     router.back();
   }
 
+  function onVersionChange(versionId: string) {
+    if (versionId === version.id) return;
+    Haptics.selectionAsync();
+    selectVersion(versionId);
+  }
+
   return (
     <ScrollView className="flex-1" contentContainerClassName="gap-6 px-6 pt-8 pb-safe-offset-6">
       <View className="flex-row items-start justify-between gap-4">
         <View className="flex-1 gap-1">
           <Text variant="muted">{project.name}</Text>
-          <Text variant="h3">{flow.name}</Text>
+          <Text variant="h3">{exploration.name}</Text>
         </View>
         <Badge variant="secondary">
           <Text>
-            {stepIndex >= 0 ? `Step ${stepIndex + 1} of ${flow.steps.length}` : 'Off flow'}
+            {stepIndex >= 0 ? `Step ${stepIndex + 1} of ${version.steps.length}` : 'Off path'}
           </Text>
         </Badge>
       </View>
 
+      <Tabs value={version.id} onValueChange={onVersionChange}>
+        <TabsList className="w-full">
+          {exploration.versions.map((v) => (
+            <TabsTrigger key={v.id} value={v.id} className="flex-1">
+              <Text>{v.name}</Text>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+
       <View className="gap-3">
         <Button size="lg" onPress={begin}>
           <Symbol name={started ? 'arrow.counterclockwise' : 'play.fill'} className="size-4" />
-          <Text>{started ? 'Play again' : 'Begin flow'}</Text>
+          <Text>{started ? 'Play again' : `Begin ${version.name}`}</Text>
         </Button>
         <View className="flex-row gap-3">
           <Button variant="outline" className="flex-1" disabled={isFirst} onPress={nav.back}>
@@ -64,9 +91,9 @@ export default function ControlsSheet() {
 
       <View className="gap-1">
         <Text variant="overline" className="mb-2">
-          Screens in this flow
+          Screens in {version.name}
         </Text>
-        {flow.steps.map((id, i) => {
+        {version.steps.map((id, i) => {
           const current = i === stepIndex;
           return (
             <Pressable

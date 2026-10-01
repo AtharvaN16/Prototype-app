@@ -1,9 +1,9 @@
 # Prototype
 
-An iOS app for running interactive prototypes: multiple projects, each with its own design system and multiple flows.
+An iOS app for running interactive prototypes. Products (each with its own design system) contain projects; projects contain explorations, and each exploration has versions (v1, v2, …).
 
 - Tap the small dot in the bottom-left corner to open the controls.
-- Pick a project at the top, pick a flow from the pills, and use the sheet to begin, go back or forward, or jump to a screen.
+- Pick a project at the top and an exploration from the tabs; in the bottom sheet pick a version, then begin, go back or forward, or jump to a screen.
 
 ## Run on your iPhone (Xcode)
 
@@ -14,7 +14,7 @@ npm start                  # Metro: serves the screens to the app, with live rel
 ```
 
 Then open `ios/Prototype.xcworkspace` in Xcode, pick your iPhone, and press ⌘R.
-After that, saving any file in `app/`, `components/` or `projects/` updates the phone instantly — no rebuild.
+After that, saving any file in `app/`, `components/` or `products/` updates the phone instantly — no rebuild.
 
 > Keep the project in a folder **without spaces** in its path — React Native's build scripts break on spaces.
 

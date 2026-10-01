@@ -16,7 +16,7 @@ module.exports = (async () => {
       plugins: { shadcn },
       settings: {
         shadcn: {
-          note: 'Design tokens live in global.css (app chrome) and projects/<id>/theme.css (each prototype project).',
+          note: 'Design tokens live in global.css (app chrome) and products/<id>/theme.css (one design system per product).',
         },
       },
       rules: {
@@ -37,7 +37,7 @@ module.exports = (async () => {
       },
     },
     {
-      files: ['scripts/**', 'plugins/**', '*.config.js', 'projects/themes.js'],
+      files: ['scripts/**', 'plugins/**', '*.config.js', 'products/themes.js'],
       languageOptions: { globals: { __dirname: 'readonly' } },
     },
     {

@@ -1,6 +1,7 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
@@ -11,15 +12,20 @@ import { Symbol } from '@/components/ui/symbol';
 import { Text } from '@/components/ui/text';
 import { usePrototype } from '@/lib/prototype/prototype-provider';
 import * as Haptics from 'expo-haptics';
+import * as React from 'react';
 import { Pressable } from 'react-native';
 
-export function ProjectPicker() {
-  const { projects, project, selectProject } = usePrototype();
+const SEPARATOR = '/';
 
-  function onValueChange(projectId: string) {
-    if (projectId === project.id) return;
+/** Project dropdown, with projects grouped under the product they belong to. */
+export function ProjectPicker() {
+  const { products, product, project, selectProject } = usePrototype();
+
+  function onValueChange(value: string) {
+    const [productId, projectId] = value.split(SEPARATOR);
+    if (productId === product.id && projectId === project.id) return;
     Haptics.selectionAsync();
-    selectProject(projectId);
+    selectProject(productId, projectId);
   }
 
   return (
@@ -34,13 +40,21 @@ export function ProjectPicker() {
         </Pressable>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-64">
-        <DropdownMenuLabel>Projects</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={project.id} onValueChange={onValueChange}>
-          {projects.map((p) => (
-            <DropdownMenuRadioItem key={p.id} value={p.id}>
-              <Text>{p.name}</Text>
-            </DropdownMenuRadioItem>
+        <DropdownMenuRadioGroup
+          value={`${product.id}${SEPARATOR}${project.id}`}
+          onValueChange={onValueChange}>
+          {products.map((p, i) => (
+            <React.Fragment key={p.id}>
+              {i > 0 && <DropdownMenuSeparator />}
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>{p.name}</DropdownMenuLabel>
+                {p.projects.map((proj) => (
+                  <DropdownMenuRadioItem key={proj.id} value={`${p.id}${SEPARATOR}${proj.id}`}>
+                    <Text>{proj.name}</Text>
+                  </DropdownMenuRadioItem>
+                ))}
+              </DropdownMenuGroup>
+            </React.Fragment>
           ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
