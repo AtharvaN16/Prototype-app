@@ -1,0 +1,29 @@
+/*
+ * Starter — design system for the "Starter" project.
+ * Replace these tokens with the values from your Figma variables.
+ */
+@layer theme {
+  :root {
+    @variant starter {
+      --color-background: oklch(0.985 0.002 247);
+      --color-foreground: oklch(0.21 0.034 264);
+      --color-card: oklch(1 0 0);
+      --color-card-foreground: oklch(0.21 0.034 264);
+      --color-popover: oklch(1 0 0);
+      --color-popover-foreground: oklch(0.21 0.034 264);
+      --color-primary: oklch(0.546 0.245 262.9);
+      --color-primary-foreground: oklch(0.985 0 0);
+      --color-secondary: oklch(0.95 0.012 255);
+      --color-secondary-foreground: oklch(0.21 0.034 264);
+      --color-muted: oklch(0.95 0.012 255);
+      --color-muted-foreground: oklch(0.55 0.027 264);
+      --color-accent: oklch(0.93 0.03 255);
+      --color-accent-foreground: oklch(0.21 0.034 264);
+      --color-destructive: oklch(0.577 0.245 27.325);
+      --color-border: oklch(0.92 0.01 255);
+      --color-input: oklch(0.92 0.01 255);
+      --color-ring: oklch(0.546 0.245 262.9);
+      --color-scrim: oklch(0 0 0 / 35%);
+    }
+  }
+}
