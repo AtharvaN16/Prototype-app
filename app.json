@@ -38,7 +38,30 @@
         }
       ],
       "expo-status-bar",
-      "./plugins/with-min-pod-deployment-target"
+      "./plugins/with-min-pod-deployment-target",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./node_modules/@expo-google-fonts/mulish/200ExtraLight/Mulish_200ExtraLight.ttf",
+            "./node_modules/@expo-google-fonts/mulish/200ExtraLight_Italic/Mulish_200ExtraLight_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/300Light/Mulish_300Light.ttf",
+            "./node_modules/@expo-google-fonts/mulish/300Light_Italic/Mulish_300Light_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/400Regular/Mulish_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/mulish/400Regular_Italic/Mulish_400Regular_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/500Medium/Mulish_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/mulish/500Medium_Italic/Mulish_500Medium_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/600SemiBold/Mulish_600SemiBold.ttf",
+            "./node_modules/@expo-google-fonts/mulish/600SemiBold_Italic/Mulish_600SemiBold_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/700Bold/Mulish_700Bold.ttf",
+            "./node_modules/@expo-google-fonts/mulish/700Bold_Italic/Mulish_700Bold_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/800ExtraBold/Mulish_800ExtraBold.ttf",
+            "./node_modules/@expo-google-fonts/mulish/800ExtraBold_Italic/Mulish_800ExtraBold_Italic.ttf",
+            "./node_modules/@expo-google-fonts/mulish/900Black/Mulish_900Black.ttf",
+            "./node_modules/@expo-google-fonts/mulish/900Black_Italic/Mulish_900Black_Italic.ttf"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

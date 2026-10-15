@@ -30,8 +30,8 @@ module.exports = (async () => {
           'error',
           {
             allow: ['layout'],
-            // Icons take their color from the call site.
-            contracts: [{ pattern: '^(Icon|Symbol)$', allow: ['layout', 'color'] }],
+            // Icons take their color from the call site; SosText's color varies by context in the kit (white / red / blue).
+            contracts: [{ pattern: '^(Icon|Symbol|SosIcon|SosText)$', allow: ['layout', 'color'] }],
           },
         ],
       },
@@ -41,8 +41,8 @@ module.exports = (async () => {
       languageOptions: { globals: { __dirname: 'readonly' } },
     },
     {
-      // shadcn/ui source (React Native Reusables) owns its own styling.
-      files: ['components/ui/**'],
+      // shadcn/ui source (React Native Reusables) and product design-system components own their styling.
+      files: ['components/ui/**', 'products/*/components/**'],
       rules: {
         'shadcn/no-restyle': 'off',
         'shadcn/no-arbitrary-values': 'off',

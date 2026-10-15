@@ -14,6 +14,9 @@
 
   --spacing-hairline: hairlineWidth();
 
+  /* Typeface. Value comes from the active theme; <Text> uses `font-sans`. */
+  --font-sans: unset;
+
   /* Semantic colors. Values come from the active theme (@variant blocks below and each product theme.css). */
   --color-background: unset;
   --color-foreground: unset;
@@ -48,6 +51,7 @@
 @layer theme {
   :root {
     @variant light {
+      --font-sans: System;
       --color-background: oklch(1 0 0);
       --color-foreground: oklch(0.145 0 0);
       --color-card: oklch(1 0 0);
@@ -74,6 +78,7 @@
     }
 
     @variant dark {
+      --font-sans: System;
       --color-background: oklch(0.145 0 0);
       --color-foreground: oklch(0.985 0 0);
       --color-card: oklch(0.205 0 0);

@@ -1,11 +1,13 @@
 import { BlankScreen } from '@/lib/prototype/blank-screen';
 import type { PrototypeProject } from '@/lib/prototype/types';
+import { DesignSystemScreen } from '@/products/accesssos/screens/design-system';
 
 export const assistiveCall: PrototypeProject = {
   id: 'assistive-call',
   name: 'Assistive Call',
   screens: {
     blank: { name: 'Blank', component: BlankScreen },
+    'design-system': { name: 'Design System', component: DesignSystemScreen },
   },
   // Placeholder explorations — replace with the real ones.
   explorations: [
@@ -22,6 +24,12 @@ export const assistiveCall: PrototypeProject = {
       id: 'exploration-b',
       name: 'Exploration B',
       versions: [{ id: 'v1', name: 'v1', steps: ['blank'] }],
+    },
+    {
+      // AccessSOS type scale + icons, for checking the design system on device.
+      id: 'design-system',
+      name: 'Design System',
+      versions: [{ id: 'v1', name: 'v1', steps: ['design-system'] }],
     },
   ],
 };

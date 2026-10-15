@@ -1,12 +1,17 @@
 /*
- * AccessSOS design system — from the AccessSOS UI Kit (Figma), "Colors" page.
+ * AccessSOS design system — from the AccessSOS UI Kit (Figma): "Colors" and "Typography" pages.
  *
- * Usage rules from the kit:
+ * Colour rules from the kit:
  * - Brand colors: backgrounds, illustrations, graphical fields.
  * - Gray 800 for body text on white (reduces eye strain).
  * - Interactive colors: buttons, links, tiles, navigation.
  * - Denotive colors (error / warning / success / focus): only for their meaning, used minimally.
  * - Do not use other shades of red.
+ *
+ * Type rules from the kit:
+ * - Mulish is the brand typeface (embedded via the expo-font plugin in app.json).
+ * - Letter spacing is 0.64% for legibility; follow a 4px baseline grid.
+ * - Mobile paragraphs are capped at 310px wide.
  */
 
 /* Raw palette — available as `bg-sos-red-500`, `text-sos-gray-800`, … */
@@ -39,24 +44,58 @@
   --color-sos-blue: #0084ff;
   --color-sos-orange: #ea7520;
   --color-sos-purple: #4d16c1;
+
+  /*
+   * Type scale — "Type Scale (Mobile: Native App)" + "Fonts - Mulish (Mobile)" on the Typography page.
+   * Use through <SosText variant="…"> (products/accesssos/components/sos-text.tsx), or `text-sos-*` directly.
+   * "Normal" line height in Figma is Mulish's natural 1.255em, rounded to the pixel.
+   */
+  --text-sos-h1: 32px; /* Titles — "Emergency?" */
+  --text-sos-h1--line-height: 38px;
+  --text-sos-h2: 32px; /* Warnings — "No Internet" */
+  --text-sos-h2--line-height: 40px;
+  --text-sos-h2--letter-spacing: 0.2px;
+  --text-sos-h3: 24px; /* Flow questions — "Who needs help?" */
+  --text-sos-h3--line-height: 30px;
+  --text-sos-h3--letter-spacing: 0.5px;
+  --text-sos-button: 20px; /* Filled & text button names */
+  --text-sos-button--line-height: 20px;
+  --text-sos-button--letter-spacing: 0.3px;
+  --text-sos-picker: 20px;
+  --text-sos-picker--line-height: 25px;
+  --text-sos-picker--letter-spacing: 0.3px;
+  --text-sos-body-lg: 20px; /* Large body text, icon text */
+  --text-sos-body-lg--line-height: 24px;
+  --text-sos-body-lg-bold: 20px; /* Icon text, selected */
+  --text-sos-body-lg-bold--line-height: 22px;
+  --text-sos-body: 18px; /* Body, text field content, labels (bold), helper text (italic) */
+  --text-sos-body--line-height: 23px;
+  --text-sos-body--letter-spacing: 0.1px;
+  --text-sos-subtext: 16px;
+  --text-sos-subtext--line-height: 20px;
+  --text-sos-subtext--letter-spacing: 0.3px;
+  --text-sos-link: 16px;
+  --text-sos-link--line-height: 20px;
+  --text-sos-link--letter-spacing: 0.1px;
 }
 
 /* Semantic tokens — what screens should use (`bg-primary`, `text-muted-foreground`, …). */
 @layer theme {
   :root {
     @variant accesssos {
+      --font-sans: Mulish;
       --color-background: #ffffff;
-      --color-foreground: #333333; /* gray/900 — headings */
+      --color-foreground: #000000; /* "Title text" — headers, labels */
       --color-card: #ffffff;
-      --color-card-foreground: #333333;
+      --color-card-foreground: #000000;
       --color-popover: #ffffff;
-      --color-popover-foreground: #333333;
+      --color-popover-foreground: #000000;
       --color-primary: #df4154; /* red/500 — brand */
       --color-primary-foreground: #ffffff;
       --color-secondary: #f5f5f5; /* gray/50 */
-      --color-secondary-foreground: #333333;
+      --color-secondary-foreground: #000000;
       --color-muted: #f5f5f5;
-      --color-muted-foreground: #5d5d5d; /* gray/700 */
+      --color-muted-foreground: #5d5d5d; /* gray/700 — "Secondary text", placeholders */
       --color-accent: #fef2f2; /* red/50 */
       --color-accent-foreground: #ad233e; /* red/700 */
       --color-destructive: #e74c3c; /* denotive error */
